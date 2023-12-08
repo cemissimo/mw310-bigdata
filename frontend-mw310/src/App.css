@@ -1,0 +1,167 @@
+
+  @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,200;0,300;1,200;1,300&display=swap');
+
+*{
+  font-family: 'Montserrat';
+  padding: 0;
+  margin: 0;
+}
+
+.main-container{
+  height: 100vh;
+}
+
+.transaction-entries-container{
+  margin: 2em 3em;
+  display: grid; /* 1 */
+  grid-template-columns: repeat(auto-fill, 400px); /* 2 */
+  grid-gap: 2rem;
+  justify-content: space-between; /* 4 */
+}
+
+
+
+.entry-container{
+  border: solid gray 2px;
+  padding: 1em;
+}
+
+.entry-container:hover{
+  border: solid gray 2px;
+  background-color: cadetblue;
+  color: white;
+}
+
+.nav-container{
+  display: flex;
+  gap: 2em;
+  padding: 2em 3em;
+  background-color: cadetblue;
+  color: white;
+}
+
+.nav-container > a{
+  text-decoration: none;
+  color: white;
+}
+
+a:visited {
+  text-decoration: none;
+}
+
+.transaction-input-container{
+  background-color: darkgrey;
+  padding: 3em 5em;
+  color: white;
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1em;
+  position: absolute;
+  top: 25%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.dashboard-container {  
+  height: 80vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 0px 0px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    "Dashboard1 Dashboard2"
+    "Dashboard3 Dashboard4";
+}
+
+.Dashboard1 { grid-area: Dashboard1; }
+
+.Dashboard2 { grid-area: Dashboard2; }
+
+.Dashboard3 { grid-area: Dashboard3; }
+
+.Dashboard4 { grid-area: Dashboard4; }
+
+
+
+.details-container{
+  position: fixed;
+  background-color: #e0eff0;
+  width: 80vw;
+  height: 80vh;
+  z-index: 999;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  overflow: auto;
+}
+
+.filterbar-container{
+  /* padding: 2em 3em; */
+  height: 4em;
+  background-color: #aed4da;
+}
+
+.rezept-section{
+  display:flex;
+  flex-direction: column;
+  gap: 3em;
+  padding: 3em;
+  justify-content: center;
+  /* flex-wrap: wrap; */
+}
+
+.rezept-container{
+  border-radius: 15px;
+  padding: 1em;
+  background-color: cadetblue;
+  color: white;
+  /* #9581a9 */
+}
+.rezept-infos{
+  display: flex;
+  gap: 1em;
+}
+
+.rezept-infos > img {
+  border-radius: 50%;
+}
+
+.rezept-text{
+  /* width: 250px; */
+  /* height: 170px; */
+  overflow: hidden;
+}
+
+.rezept-text:hover{
+  overflow: auto;
+}
+
+.store-selection-container{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2em;
+}
+
+.loading-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+@media screen and (max-width: 992px) {
+  .rezept-container > p {
+    text-align: center;
+  }
+  .rezept-infos{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1em;
+  }
+}
+
