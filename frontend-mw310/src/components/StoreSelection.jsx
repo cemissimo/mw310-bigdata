@@ -3,10 +3,17 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 function StoreSelection() {
+  /**
+   * Komponente die ein Eingabefeld rendert in der die Store ID eingegeben werden kann.
+   */
+  
   const [storeId, setStoreId] = useState('');
   const navigate = useNavigate();
 
   const handleFormSubmit = (e) => {
+    /**
+     * Beim eingeben der Store ID wird eine Weiterleitung zur Seite des Stores initiiert.
+     */
     console.log("miau")
     e.preventDefault();
     navigate(`/store/${storeId}`);

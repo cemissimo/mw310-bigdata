@@ -4,6 +4,9 @@ import requests
 from fastapi import HTTPException
 
 class Bigquery_client:
+    """
+    Klasse zum Instanziieren eines BigQuery Clients für den Verbindungsaufbau mit BigQuery
+    """
     def __init__(self, project_name: str):
         self.client = bigquery.Client(project=project_name)
 
@@ -42,6 +45,11 @@ class Bigquery_client:
         return response_dict
 
     def get_ueberbestand(self, store_id: int):
+        """
+        Mit dieser Funktion werden von BigQuery die Coupons für den jeweiligen Store ausgelesen.
+        @type store_id: int 
+        @param store_id:  Die ID des Stores für den die Coupons und Rezepte generiert werden soll
+        """
         query = f"SELECT * FROM mw310-404810.mw310_dataset.coupons where store_id = {store_id}"
         
         query_job = self.client.query(query)
@@ -59,6 +67,11 @@ class Bigquery_client:
         return result
     
     def increment_coupon_counter(self, coupon_id):
+        """
+        Funktion zum inkrementieren der Anzahl wie oft der Coupon genutzt wurde.
+        @type coupon_id: str
+        @param coupon: Die ID des Coupons welcher hochgezählt werden soll.
+        """
         try:
             # Führe das BigQuery-Update durch
             query = f"UPDATE mw310_dataset.coupons SET times_used = times_used + 1 WHERE coupon_id = '{coupon_id}';"
@@ -72,8 +85,6 @@ class Bigquery_client:
 
     
     def get_summed_sales_for_stores_gcp(self):
-
-        
         query = f"SELECT store_id, product_name, SUM(quantity) as quantity FROM `retail_dataset.transactions_log` WHERE (EXTRACT(DAYOFWEEK FROM TIMESTAMP (time_of_sale)) - 1) < 3 GROUP BY store_id, product_name ORDER BY store_id ASC;"
         query_job = self.client.query(query)
         
@@ -98,6 +109,12 @@ class Bigquery_client:
         return result_list
 
 def handle_generate_coupon(products: list):
+    """
+    Aus den Coupons wird der Produktname ausgelesen. Dieser wird als Parameter für die http-Anfrage an die Rezept API genutzt,
+    um für das Produkt Rezepte zu erhalten.
+    @type products: list
+    @param products: Eine Liste von Dictionaries die die Coupons enthält
+    """
     options = {
         'method': 'GET',
         'url': 'https://gustar-io-deutsche-rezepte.p.rapidapi.com/search_api',

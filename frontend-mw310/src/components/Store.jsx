@@ -44,6 +44,10 @@ function Store() {
     }
 
     const handleClickCoupon = (recipe) => {
+      /**
+       * Wenn auf einen Coupon geklickt wird, wird der Coupon angezeigt durch setzen des isShowCoupons States auf true.
+       * Außerdem wird das Rezept mitgegeben damit die Relevanten 
+       */
       setRecipe(recipe);
       setIsShowCoupon(true);
       console.log(recipe)
@@ -54,6 +58,9 @@ function Store() {
   }
   
   if(isShowCoupon === true){
+    /**
+     * Anzeigen des Coupons wenn isShowCoupon true ist.
+     */
     return <Coupon recipe={recipe} closeCoupon={closeCoupon}></Coupon>
   }
 

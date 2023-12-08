@@ -111,6 +111,12 @@ async def get_summed_sales_for_stores():
 
 @app.get("/coupons")
 async def coupons_for_store(store_id: int):
+    """
+    Endpunkt der die Coupons und Rezeptvorschläge für die Store ID zurückgibt
+    Parameters
+    @type store_id: int 
+    @param store_id:  Die ID des Stores für den die Coupons und Rezepte generiert werden soll
+    """
     print("hallo")
     return bigquery_client.get_ueberbestand(store_id)
 
